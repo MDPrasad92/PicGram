@@ -6,7 +6,7 @@ import {AppProfileHeader} from './profile-header';
 import {AppProfileCard} from './profile-card';
 
 
-class BodyContent extends React.Component {
+class AppProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -143,4 +143,4 @@ const mapDispatchToProps = dispatch => {
         asyncGetImaginaryAction: (url) => dispatch(asyncGetImaginaryAction(url))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(BodyContent);
+export default connect(mapStateToProps, mapDispatchToProps)(AppProfile);
