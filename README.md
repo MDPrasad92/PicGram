@@ -1,12 +1,12 @@
-# Getting Started with Create React App
+## Getting Started with Create React App
 
-# Clone / download repository from github.
+## Clone / download repository from github.
 
-# setup local environment, the open in IDE.
+## setup local environment, the open in IDE.
 
-# Open CMD / Termial and goto root path.
+## Open CMD / Termial and goto root path.
 
-# In the project directory, you can Run `npm install`  (installing required dependencies.)
+## In the project directory, you can Run `npm install`  (installing required dependencies.)
 
 ## Available Scripts
 
