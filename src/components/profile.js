@@ -19,11 +19,13 @@ class AppProfile extends React.Component {
             }
         }
     }
+    //============ Getting imaginary data from API with redux ==============//
     async componentDidMount() {
         const end_poind_url = "https://raw.githubusercontent.com/Lokenath/MyRepo/master/Test/package.json";
         await this.props.asyncGetImaginaryAction(end_poind_url);
         await this.getResult(this.props.data);
     }
+    //================ Assign new parameters ==============//
     getResult = async (list) => {
         let result = list.map(function (el) {
             let o = Object.assign({}, el);
@@ -34,7 +36,7 @@ class AppProfile extends React.Component {
         });
         await this.setState({ ...this.state, dataList: result, totalList: result });
     }
-
+    //============ Post Comment Data =================//
     PostData = async (event, comment, index) => {
         if (comment.trim() !== "") {
             this.state.dataList[index].comments.unshift(comment);
@@ -42,31 +44,36 @@ class AppProfile extends React.Component {
             await this.setState({ ...this.state, dataList: this.state.dataList });
         }
     }
+    //============ Post Text Data =================//
     PostTextData = async (event, index) => {
-        debugger;
+        //debugger;
         this.state.dataList[index].commentText = event.target.value;
         await this.setState({ ...this.state, dataList: this.state.dataList });
     }
+    //============= Increament and Decreament Likes ============//
     incAndDecLikes = async (likeCount, index, status) => {
         this.state.dataList[index].likes = status === "Like" ? likeCount + 1 : likeCount - 1;
         this.state.dataList[index].likeStatus = status === "Like" ? "Unlike" : "Like";
         await this.setState({ ...this.state, dataList: this.state.dataList });
     }
+    //============== most mostLiked data ============//
     mostLiked = async () => {
         let list = this.state.dataList.sort((a, b) => b.likes - a.likes);
         await this.setState({ ...this.state, dataList: list });
     }
+    //============== most commented data ============//
     mostCommented = async () => {
-        debugger
+        //debugger
         let list = this.state.dataList.sort((a, b) => b.comments.length - a.comments.length);
         await this.setState({ ...this.state, dataList: list });
     }
     normal = async () => {
-        debugger
+        //debugger
         await this.setState({ ...this.state, dataList: this.state.totalList });
     }
+    //========== Search Images Category wise ============//
     searchImages = async (event) => {
-        debugger;
+        //debugger;
         let result = [];
         if (event.target.value !== "") {
             result = this.state.dataList.filter(function (a) {
@@ -80,14 +87,17 @@ class AppProfile extends React.Component {
             await this.setState({ ...this.state, dataList: this.state.totalList });
         }
     }
+    //========== Delete Comment ============//
     deleteComment = async (parentID, childID) => {
         this.state.dataList[parentID].comments.splice(childID, 1);
         await this.setState({ ...this.state, dataList: this.state.dataList });
     }
+    //========== Show Image Popup ============//
     showImage = async(obj) => {
         await this.setState({...this.state, model: {toggle: true, src: obj.url, alt: obj.category}})
 
     }
+    //========== Hide Image Popup ============//
     hideImage = async() => {
         await this.setState({...this.state, model: {toggle: false, src: '', alt: ''}})
     }
